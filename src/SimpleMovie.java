@@ -5,6 +5,7 @@ public class SimpleMovie {
     private String actorsData;
     private ArrayList<String> actors;
     private int baconDegree = 0;
+    private int actorDegree = 0;
 
     public SimpleMovie(String t, String a) {
         title = t;
@@ -27,9 +28,16 @@ public class SimpleMovie {
     public void setBaconDegree(int x){
         baconDegree = x;
     }
+    public void setActorDegree(int x){
+        actorDegree = x;
+    }
 
     public int getBaconDegree() {
         return baconDegree;
+    }
+
+    public int getActorDegree() {
+        return actorDegree;
     }
 
     public String toString() {
