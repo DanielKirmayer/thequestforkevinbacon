@@ -5,6 +5,16 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
+
+        String chain = "";
+        SimpleMovie important = null;
+        SimpleMovie important2 = null;
+        SimpleMovie important3 = null;
+        SimpleMovie important4 = null;
+        String importantActor = "";
+        String importantActor2 = "";
+        String importantActor3 = "";
+
         System.out.println("Enter a name to search for bacon degree! ");
 
         Scanner s = new Scanner(System.in);
@@ -89,30 +99,127 @@ public class Main {
         boolean found = false;
 
         if (actorsWithBacon.contains(actorToSearch)) {
+
+            for (int i = 0; i < moviesWithBacon.size(); i++) {
+                if (moviesWithBacon.get(i).getActors().contains(actorToSearch))
+                    chain = "Kevin Bacon ---> "+ moviesWithBacon.get(i).getTitle() + " ---> "+actorToSearch;
+
+            }
+
             System.out.println("One Bacon Degree");
+            System.out.println(chain);
             found = true;
         }
         if (twoBaconDegreeActors.contains(actorToSearch) && !found){
+
+            for (int i = 0; i < moviesWithBacon2nd.size(); i++) {
+                if(moviesWithBacon2nd.get(i).getActors().contains(actorToSearch)) {
+
+                    important = moviesWithBacon2nd.get(i);
+                    chain = moviesWithBacon2nd.get(i).getTitle() + " ---> " + actorToSearch;
+
+                }
+
+
+            }
+
+            for (int i = 0; i < important.getActors().size(); i++) {
+                for (int j = 0; j < moviesWithBacon.size(); j++) {
+                    if (moviesWithBacon.get(j).getActors().contains(important.getActors().get(i))) {
+                        important2 = moviesWithBacon.get(j);
+                        importantActor = important.getActors().get(i);
+                    }
+                }
+            }
+
+            chain = "Kevin Bacon ---> "+ important2.getTitle() + " ---> "+importantActor+" ---> "+chain;
+
+
             System.out.println("Two Bacon Degrees");
+            System.out.println(chain);
+
+
             found = true;}
 
 
         if (!found) {
             for (int i = 0; i < actorsWithActor.size(); i++) {
-                if(twoBaconDegreeActors.contains(actorsWithActor.get(i))){
+                if (twoBaconDegreeActors.contains(actorsWithActor.get(i))) {
+                    importantActor = actorsWithActor.get(i);
+
+
                     found = true;
                     System.out.println("Three Bacon Degrees");
-                    break;}
+                    break;
+                }
+            }
+
+            if (found) {
+                for (int i = 0; i < moviesWithActor.size(); i++) {
+                    if (moviesWithActor.get(i).getActors().contains(importantActor))
+                        important = moviesWithActor.get(i);
+
+                }
+                for (int i = 0; i < moviesWithBacon2nd.size(); i++) {
+                    if (moviesWithBacon2nd.get(i).getActors().contains(importantActor))
+                        important2 = moviesWithBacon2nd.get(i);
+                }
+
+                for (int i = 0; i < actorsWithBacon.size(); i++) {
+                    if (important2.getActors().contains(actorsWithBacon.get(i)))
+                        importantActor2 = actorsWithBacon.get(i);
+
+
+                }
+
+                for (int i = 0; i < moviesWithBacon.size(); i++) {
+                    if (moviesWithBacon.get(i).getActors().contains(importantActor2))
+                        important3 = moviesWithBacon.get(i);
+
+                }
+                System.out.println("Kevin Bacon ---> " + important3.getTitle() + " ---> " + importantActor2 + " ---> " + important2.getTitle() + " ---> " + importantActor + " ---> " + important.getTitle() + " ---> " + actorToSearch);
             }
         }
 
         if(!found){
             for (int i = 0; i < twoActorDegreeActors.size(); i++) {
                 if(twoBaconDegreeActors.contains(twoActorDegreeActors.get(i))){
+
+                    importantActor2 = twoActorDegreeActors.get(i);
+
                     found = true;
                     System.out.println("Four Bacon Degrees");
                     break;}
             }
+
+            for (int i = 0; i < moviesWithActor2nd.size(); i++) {
+                if (moviesWithActor2nd.get(i).getActors().contains(importantActor2))
+                    important2 = moviesWithActor2nd.get(i);
+            }
+
+            for (int i = 0; i < actorsWithActor.size(); i++) {
+                if (important2.getActors().contains(actorsWithActor.get(i)))
+                    importantActor = actorsWithActor.get(i);
+            }
+
+            for (int i = 0; i < moviesWithActor.size(); i++) {
+                if(moviesWithActor.get(i).getActors().contains(importantActor))
+                    important = moviesWithActor.get(i);
+            }
+            for (int i = 0; i < moviesWithBacon2nd.size(); i++) {
+                if(moviesWithBacon2nd.get(i).getActors().contains(importantActor2))
+                    important3 = moviesWithBacon2nd.get(i);
+            }
+            for (int i = 0; i < actorsWithBacon.size(); i++) {
+                if(important3.getActors().contains(actorsWithBacon.get(i)))
+                    importantActor3 = actorsWithBacon.get(i);
+            }
+            for (int i = 0; i < moviesWithBacon.size(); i++) {
+                if(moviesWithBacon.get(i).getActors().contains(importantActor3))
+                    important4 = moviesWithBacon.get(i);
+            }
+            System.out.println("Kevin Bacon ---> "+important4.getTitle()+" ---> "+importantActor3+" ---> "+important3.getTitle()+" ---> "+importantActor2 + " ---> "+ important2.getTitle() + " ---> "+ importantActor + " ---> "+ important.getTitle() + " ---> "+ actorToSearch);
+
         }
 
 

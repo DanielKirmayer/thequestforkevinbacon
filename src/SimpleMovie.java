@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 
 public class SimpleMovie {
+
+
     private String title;
     private String actorsData;
     private ArrayList<String> actors;
@@ -40,6 +42,9 @@ public class SimpleMovie {
         return actorDegree;
     }
 
+    public String getTitle() {
+        return title;
+    }
     public String toString() {
         return "Title: " + title + "\n" + "Actors: " + actors + "\n";
     }
